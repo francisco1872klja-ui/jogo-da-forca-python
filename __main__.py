@@ -5,7 +5,7 @@ from time import sleep
 def Jogo_Forca():
     jogo=JogoForca()
     print("Começou o jogo..")
-    sleep(0.5)
+    sleep(0.9)
     while True:
         try:
             system("cls") 

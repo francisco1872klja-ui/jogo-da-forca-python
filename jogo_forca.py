@@ -1,17 +1,35 @@
 import os
 
+def menu():
+    categorias=["Tecnologia","Frutas"]
+    for j,i in enumerate(categorias):
+        print(f"[{j+1}]{i}",end="|")
+    print()
+    categoria=int(input("Qual categoria escolhe?: "))
+
+    return categorias[categoria-1]
+
 def sortear_palavra():
+    pasta="Categorias"
     from random import choices
 
-    if not os.path.exists("Palavras.txt"):
+    if not os.path.exists(pasta):
         raise FileNotFoundError("Arquivo não encontrado para sortear as palavras")
 
-    with open("Palavras.txt","r",encoding="utf-8") as arquivo:
+    categoria=menu()
+
+    caminho_completo=os.path.join(pasta,f"{categoria}.txt")
+
+    if not os.path.exists(caminho_completo):
+        raise FileNotFoundError (f"O arquivo {categoria}.txt não existe!")
+        
+    with open(caminho_completo,"r",encoding="utf-8") as arquivo:
 
         ler=arquivo.read().split()
         palavra_sorteada=choices(ler)
+        print(f"Categoria escolhida: {categoria}")
 
-    return palavra_sorteada     
+    return palavra_sorteada 
  
 class JogoForca:
     def __init__(self):
